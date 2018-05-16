@@ -1,4 +1,7 @@
 # SegyStream
+
+[![TravisCI build](https://travis-ci.org/sereneant/segystream.svg?branch=master)](https://travis-ci.org/sereneant/segystream)
+
 Reactive streaming SEG-Y parser
 
 ## Features
