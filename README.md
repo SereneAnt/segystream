@@ -13,7 +13,6 @@ Reactive streaming SEG-Y parser
 * API for both [scala](https://www.scala-lang.org/) and [java](https://docs.oracle.com/javase/8/docs/technotes/guides/language/index.html) languages.
 
 ## Further work
-* Resolve multiple TODOs and FIXMEs in the code
 * Configurable segy data chunk size and text reading encoding
 * Add Github badges - code coverage, stable version, etc
 * Add more examples for streaming from file source, S3, transformation, visualization, parallel processing
@@ -35,12 +34,19 @@ libraryDependencies += "com.github.sereneant.segystream" %% "core" % "0.1.0"
 ```
 
 **Maven**
-```mvn
+```xml
 <dependency>
     <groupId>com.github.sereneant.segystream</groupId>
     <artifactId>core_2.12</artifactId>
     <version>0.1.0</version>
 </dependency>
+```
+
+**Gradle**
+```groovy
+dependencies {
+  compile group: 'com.github.sereneant.segystream', name: 'core_2.12', version: '0.1.0'
+}
 ```
 
 Streaming implementation is based on [Akka Streams](https://doc.akka.io/docs/akka/2.5/stream/index.html).
@@ -67,7 +73,7 @@ Run the flow, make actions/transformations:
       case td: TraceDataChunk => println(s"Trace Data Chunk: length=${td.length}")
       case _ => // NoOp
     }
-    .toMat(Sink.ignore)(Keep.right) // keep for the Sink to complete
+    .toMat(Sink.ignore)(Keep.right) // wait for the Sink to complete
     .run()
 ```
 
@@ -79,6 +85,9 @@ Wait for stream termination and print the stats:
     println("Stream completed")
   }
 ```
+**Java**
+
+See [PrintDebugInfo](examples/src/main/java/com.github.sereneant.segystrem.examples/PrintDebugInfo.java) example program.
 
 ## Configuration
 Stream of Seg-Y data in traces is split into chunks of configurable length, default is 1024 bytes.
@@ -90,10 +99,6 @@ val segyFlow = new SegyFlow(SegyConfig(
   dataChunkSize: Int = 1024 //bytes
 ))
 ```
-
-**Java**
-
-_TBD_
 
 ### Building from sources
 ```bash
@@ -141,7 +146,7 @@ the format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## Versioning
 [SemVer](http://semver.org/) is used as versioning standard.
-For the version references, see the [git tags](https://github.com/your/project/tags).
+For the version references, see the [git tags](https://github.com/SereneAnt/segystream/tags).
 
 ## License
 Licensed under the MIT License - see the [LICENSE](LICENSE) file.

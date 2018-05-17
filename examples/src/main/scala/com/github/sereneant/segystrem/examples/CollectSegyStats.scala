@@ -22,7 +22,7 @@ object CollectSegyStats extends AkkaStreamsSetup {
   // Run the stream
   val done: Future[Done] = segySource
     .map(stats.collect) // collect the statistics
-    .toMat(Sink.ignore)(Keep.right) // keep for the Sink to complete
+    .toMat(Sink.ignore)(Keep.right) // wait for the Sink to complete
     .run()
 
   // Wait for stream termination and print the stats

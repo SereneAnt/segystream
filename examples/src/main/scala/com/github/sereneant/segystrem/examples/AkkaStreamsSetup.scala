@@ -13,7 +13,7 @@ class AkkaStreamsSetup extends App {
 
   private val path = args match {
     case Array(argPath, _*) => Paths.get(argPath)
-    case _ => throw new RuntimeException(s"SegY file path should be first param in args")
+    case _ => throw new RuntimeException("SegY file path should be first param in args")
   }
 
   // Akka streams setup

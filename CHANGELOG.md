@@ -12,5 +12,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## 0.1.0 - 2018-05-??
 ### Added
 - SEG-Y v1 support
-- Usage examples
+- Usage examples (scala, java)
 - SBT release plugin
