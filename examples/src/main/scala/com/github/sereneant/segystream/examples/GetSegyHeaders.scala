@@ -1,4 +1,4 @@
-package com.github.sereneant.segystrem.examples
+package com.github.sereneant.segystream.examples
 
 import akka.stream.scaladsl.{Keep, Sink, Source}
 import com.github.sereneant.segystream.{SegyFlow, SegyHeaders, SegyPart}

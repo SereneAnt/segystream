@@ -85,9 +85,19 @@ Wait for stream termination and print the stats:
     println("Stream completed")
   }
 ```
+
+### Scala examples
+* [Collect and print Seg-Y data stats](examples/src/main/scala/com/github/sereneant/segystream/examples/CollectSegyStats.scala)
+* [Output info from Seg-Y headers](examples/src/main/scala/com/github/sereneant/segystream/examples/GetSegyHeaders.scala)
+* [Collect data for given in-line/cross-line section](examples/src/main/scala/com/github/sereneant/segystream/examples/GetDataForSlice.scala)
+* More to come...
+
 **Java**
 
-See [PrintDebugInfo](examples/src/main/java/com.github.sereneant.segystrem.examples/PrintDebugInfo.java) example program.
+The full power of Akka streams is available in Java as well.
+
+### Java Examples
+* [Print some Seg-Y Info](/Users/sereneant/Work/_my/segystream/examples/src/main/java/com/github/sereneant/segystream/examples/PrintDebugInfo.java)
 
 ## Configuration
 Stream of Seg-Y data in traces is split into chunks of configurable length, default is 1024 bytes.

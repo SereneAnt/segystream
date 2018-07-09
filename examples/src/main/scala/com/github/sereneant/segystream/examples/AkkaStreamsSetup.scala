@@ -1,4 +1,4 @@
-package com.github.sereneant.segystrem.examples
+package com.github.sereneant.segystream.examples
 
 import java.nio.file.Paths
 

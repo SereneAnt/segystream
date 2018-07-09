@@ -1,4 +1,4 @@
-package com.github.sereneant.segystrem.examples
+package com.github.sereneant.segystream.examples
 
 class DisplaySegyData {
   //TODO: Implement example

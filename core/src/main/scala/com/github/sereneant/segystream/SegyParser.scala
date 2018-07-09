@@ -101,7 +101,7 @@ case class TraceHeaderPhase(cfg: SegyConfig, binHeader: BinHeader) extends SegyP
       }
     }
     val bytesLeft = nSamples * binHeader.getDataFormat.length
-    TraceDataPhase(cfg, binHeader, nSamples, bytesLeft)
+    TraceDataPhase(cfg, binHeader, th, 0, bytesLeft)
   }
   override def extract(bs: ByteString): (TraceHeader, SegyPhase) = {
     val it = bs.iterator
@@ -178,10 +178,10 @@ case class TraceHeaderPhase(cfg: SegyConfig, binHeader: BinHeader) extends SegyP
       geophoneGroupNumOfLastWithinOrigRecord = it.getShort,
       gapSize = it.getShort,
       overTravel = it.getShort,
-      xCoordOfEnsemble = it.getInt,
-      yCoordOfEnsemble = it.getInt,
-      inLineNum = it.getInt,
-      crossLineNum = it.getInt,
+      x = it.getInt,
+      y = it.getInt,
+      iLine = it.getInt,
+      xLine = it.getInt,
       shotPointNum = it.getInt,
       shotPointNumCoef = it.getInt,
       traceValueMeasUnit = it.getShort,
@@ -202,19 +202,26 @@ case class TraceHeaderPhase(cfg: SegyConfig, binHeader: BinHeader) extends SegyP
   }
 }
 
-case class TraceDataPhase(cfg: SegyConfig, binHeader: BinHeader, nSamples: Int, bytesLeft: Int) extends SegyPhase {
+/**
+  * @param pos index of starting sample of the DataChunk in the Trace
+  * @param bytesLeft bytes left to fetch for the current Trace
+  */
+case class TraceDataPhase(cfg: SegyConfig, binHeader: BinHeader, th: TraceHeader, pos: Int, bytesLeft: Int)
+  extends SegyPhase
+{
   override def length: Int = Math.min(cfg.dataChunkSize, bytesLeft)
   override def matPromise: PromiseStrategy = NOOP
   def nextPhase(td: TraceDataChunk): SegyPhase = {
     val bytesUsed = td.bs.length
+    val curPos = pos + bytesUsed / binHeader.getDataFormat.length
     bytesLeft - bytesUsed match {
-      case left if left > 0 => TraceDataPhase(cfg, binHeader, nSamples, left)
+      case left if left > 0 => TraceDataPhase(cfg, binHeader, th, curPos, left)
       case left if left == 0 => TraceHeaderPhase(cfg, binHeader)
       case left if left < 0 => throw new SegyException(s"Something went wrong, negative offset reading SegY Data: $left")
     }
   }
   override def extract(bs: ByteString): (TraceDataChunk, SegyPhase) = {
-    val segy = TraceDataChunk(bs)(binHeader.getDataFormat)
+    val segy = TraceDataChunk(bs, pos, th.iLine, th.xLine)(binHeader.getDataFormat)
     segy -> nextPhase(segy)
   }
 }

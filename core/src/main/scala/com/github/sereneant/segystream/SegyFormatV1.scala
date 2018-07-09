@@ -182,10 +182,10 @@ case class TraceHeader(
   geophoneGroupNumOfLastWithinOrigRecord: Short,
   gapSize: Short,
   overTravel: Short,
-  xCoordOfEnsemble: Int,
-  yCoordOfEnsemble: Int,
-  inLineNum: Int,
-  crossLineNum: Int,
+  x: Int,
+  y: Int,
+  iLine: Int,
+  xLine: Int,
   shotPointNum: Int,
   shotPointNumCoef: Int,
   traceValueMeasUnit: Short,
@@ -209,7 +209,10 @@ case class TraceHeader(
   * Part of the trace data array.
   */
 case class TraceDataChunk(
-  bs: ByteString
+  bs: ByteString,
+  pos: Int, // Position of the chunk in the trace
+  iLine: Int, // Trace's inline
+  xLine: Int // Trace's inline
 ) (dataFormat: DataFormat[_]) extends SegyPart {
   def length: Int = bs.length
 
@@ -233,5 +236,5 @@ case class TraceDataChunk(
     }
   }
 
-  override def info: String = s"TraceDataChunk: len=${bs.length}"
+  override def info: String = s"TraceDataChunk: iLine=$iLine, xLine=$xLine, pos=$pos, len=${bs.length}"
 }

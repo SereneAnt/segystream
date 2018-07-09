@@ -1,4 +1,4 @@
-package com.github.sereneant.segystrem.examples;
+package com.github.sereneant.segystream.examples;
 
 import akka.Done;
 import akka.actor.ActorSystem;

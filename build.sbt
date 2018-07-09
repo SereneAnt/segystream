@@ -11,7 +11,7 @@ val akkaVersion = "2.5.12"
 val scalatestVersion = "3.0.5"
 val scalacheckVersion = "1.14.0"
 
-lazy val root = project.in(file("."))
+lazy val segystream = project.in(file("."))
   .aggregate(core, examples, benchmark)
   .settings(
     skip in publish := true,
