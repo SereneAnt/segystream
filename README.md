@@ -30,14 +30,14 @@ Add dependency:
 
 **Sbt**
 ```sbt
-libraryDependencies += "com.github.sereneant.segystream" %% "core" % "0.1.0"
+libraryDependencies += "com.github.sereneant.segystream" %% "segystream-core" % "0.1.0"
 ```
 
 **Maven**
 ```xml
 <dependency>
     <groupId>com.github.sereneant.segystream</groupId>
-    <artifactId>core_2.12</artifactId>
+    <artifactId>segystream-core_2.12</artifactId>
     <version>0.1.0</version>
 </dependency>
 ```
@@ -45,7 +45,7 @@ libraryDependencies += "com.github.sereneant.segystream" %% "core" % "0.1.0"
 **Gradle**
 ```groovy
 dependencies {
-  compile group: 'com.github.sereneant.segystream', name: 'core_2.12', version: '0.1.0'
+  compile group: 'com.github.sereneant.segystream', name: 'segystream-core_2.12', version: '0.1.0'
 }
 ```
 
@@ -97,7 +97,7 @@ Wait for stream termination and print the stats:
 The full power of Akka streams is available in Java as well.
 
 ### Java Examples
-* [Print some Seg-Y Info](/Users/sereneant/Work/_my/segystream/examples/src/main/java/com/github/sereneant/segystream/examples/PrintDebugInfo.java)
+* [Print some Seg-Y Info](examples/src/main/java/com/github/sereneant/segystream/examples/PrintDebugInfo.java)
 
 ## Configuration
 Stream of Seg-Y data in traces is split into chunks of configurable length, default is 1024 bytes.
