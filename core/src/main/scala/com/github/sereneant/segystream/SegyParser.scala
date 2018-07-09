@@ -84,7 +84,7 @@ case class ExtTextHeaderPhase(cfg: SegyConfig, extHeadersLeft: Int, binHeader: B
     case _ => TraceHeaderPhase(cfg, binHeader)
   }
   override def extract(bs: ByteString): (ExtTextHeader, SegyPhase) = {
-    val s = bs.decodeString(cfg.charset) //FIXME: Make configurable with default!
+    val s = bs.decodeString(cfg.charset)
     ExtTextHeader(s) -> nextPhase
   }
 }
@@ -210,7 +210,7 @@ case class TraceDataPhase(cfg: SegyConfig, binHeader: BinHeader, nSamples: Int, 
     bytesLeft - bytesUsed match {
       case left if left > 0 => TraceDataPhase(cfg, binHeader, nSamples, left)
       case left if left == 0 => TraceHeaderPhase(cfg, binHeader)
-      case left if left < 0 => throw new SegyException(s"Smth went wrong, negative offset reading SegY Data: $left")
+      case left if left < 0 => throw new SegyException(s"Something went wrong, negative offset reading SegY Data: $left")
     }
   }
   override def extract(bs: ByteString): (TraceDataChunk, SegyPhase) = {

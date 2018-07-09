@@ -33,7 +33,7 @@ object CollectSegyStats extends AkkaStreamsSetup {
   }
 
   /**
-    * Thread-safe Seg-Y data statittics with Gil Tene's HdrHistogram (just for fun)
+    * Thread-safe Seg-Y data statistics with Gil Tene's HdrHistogram (just for fun)
     * https://github.com/HdrHistogram/HdrHistogram
     */
   class SegyStats {
@@ -59,8 +59,8 @@ object CollectSegyStats extends AkkaStreamsSetup {
         } finally {
           if (ps != null) ps.close()
         }
-      } finally {
-        //FIXME: autoclosable
+      } catch {
+        case ex: Throwable => ex.printStackTrace()
       }
       val histogramInfo = new String(baos.toByteArray, StandardCharsets.UTF_8)
 
