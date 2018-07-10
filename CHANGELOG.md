@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Project split into modules
 - Structure of TraceDataChunk changed: more metadata fields
+- Updated to Akka 2.5.13
 
 ## 0.1.0 - 2018-05-??
 ### Added

@@ -7,7 +7,7 @@ lazy val commonSettings = Seq(
   publishTo := Some(Resolver.file("file",  new File(Path.userHome.absolutePath + "/.m2/repository")))
 )
 
-val akkaVersion = "2.5.12"
+val akkaVersion = "2.5.13"
 val scalatestVersion = "3.0.5"
 val scalacheckVersion = "1.14.0"
 
