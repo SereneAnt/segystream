@@ -202,7 +202,7 @@ case class TraceHeader(
   sourceMeasUnit: Short
   // 233 - 240 Unassigned in v1
 ) extends SegyPart {
-  override def info: String = s"TraceHeader: #$traceSequenceNumberWithinLine, samples=$samplesNumber at ${sampleIntervalMs}ms"
+  override def info: String = s"TraceHeader: #$traceSequenceNumberWithinSegyFile, iLine=$iLine, xLine=$xLine, samples=$samplesNumber at ${sampleIntervalMs}ms"
 }
 
 /**
