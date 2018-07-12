@@ -236,5 +236,7 @@ case class TraceDataChunk(
     }
   }
 
+  def floatData: Array[Float] = floatIterator.toArray
+
   override def info: String = s"TraceDataChunk: iLine=$iLine, xLine=$xLine, pos=$pos, len=${bs.length}"
 }
