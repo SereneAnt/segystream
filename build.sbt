@@ -12,6 +12,7 @@ val scalatestVersion = "3.0.5"
 val scalacheckVersion = "1.14.0"
 
 lazy val segystream = project.in(file("."))
+  .settings(commonSettings: _*)
   .aggregate(core, examples, benchmark)
   .settings(
     skip in publish := true,
@@ -38,7 +39,8 @@ lazy val examples = project
     libraryDependencies ++= Seq(
       "com.typesafe.akka" %% "akka-stream" % akkaVersion,
       "org.hdrhistogram" % "HdrHistogram" % "2.1.10"
-    )
+    ),
+    skip in publish := true
   )
 
 lazy val benchmark = project
