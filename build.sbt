@@ -2,11 +2,11 @@
 lazy val commonSettings = Seq(
   name := "segystream",
   organization := "com.github.sereneant.segystream",
-  scalaVersion := "2.12.6",
+  scalaVersion := "2.12.7",
   publishTo := Some(Resolver.file("file",  new File(Path.userHome.absolutePath + "/.m2/repository")))
 )
 
-val akkaVersion = "2.5.15"
+val akkaVersion = "2.5.17"
 val scalatestVersion = "3.0.5"
 val scalacheckVersion = "1.14.0"
 
