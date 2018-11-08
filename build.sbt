@@ -6,7 +6,7 @@ lazy val commonSettings = Seq(
   publishTo := Some(Resolver.file("file",  new File(Path.userHome.absolutePath + "/.m2/repository")))
 )
 
-val akkaVersion = "2.5.17"
+val akkaVersion = "2.5.18"
 val scalatestVersion = "3.0.5"
 val scalacheckVersion = "1.14.0"
 
@@ -23,6 +23,7 @@ lazy val core = project
     name := "segystream.core",
     libraryDependencies ++= Seq(
       "com.typesafe" % "config" % "1.3.3",
+      "com.chuusai" %% "shapeless" % "2.3.3",
       "com.typesafe.akka" %% "akka-stream" % akkaVersion,
       "com.typesafe.akka" %% "akka-stream-testkit" % akkaVersion % Test,
       "org.scalatest" %% "scalatest" % scalatestVersion % Test,
